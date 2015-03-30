@@ -1,0 +1,45 @@
+
+<!-- 最外层的组件，可以按个人需要改-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyFragment" >                                  
+
+<!-- 在这里定义了一个fragment区域,下面class对应的是待会要创建的类 -->
+    <fragment
+        android:id="@+id/firstfragment"
+        android:layout_width="100dp"
+        android:layout_height="fill_parent"
+        class="com.example.myfragment.FirstFragment" />
+
+<!-- 通过各种嵌套来得到我们想要的布局 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/firstfragment" 
+        android:orientation="vertical">
+
+        
+<!-- 这里注意到android:layout_height设为0
+       这是没关系的，因为在这个fragment所在的容器
+       是vertical的，所以fragment会和FrameLayout以1比2
+       的比重（和weight相关）来分配所在容器的height -->
+        <fragment
+            android:id="@+id/secondfragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" 
+            android:layout_weight="1"
+            class="com.example.myfragment.SecondFragment"/>            
+ 
+        
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" 
+            android:layout_weight="2">
+        </FrameLayout>
+
+    </LinearLayout>
+</RelativeLayout>
